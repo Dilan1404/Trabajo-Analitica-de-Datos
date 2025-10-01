@@ -410,25 +410,111 @@ def collect_snapshot(owm_key=None):
 
 def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
     all_rows = []
-    logging.info(f"Ejecutando")
-    snapshot = collect_snapshot(owm_key)
-            if snapshot:
-                all_rows.extend(snapshot)
-                df = pd.DataFrame(all_rows)
-                df.to_csv(out_csv, index=False)
-                df.to_excel(out_excel, index=False)
-                logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
-            else:
-                logging.warning("Snapshot vacío en esta ejecución.")
-    #except KeyboardInterrupt:
-        #logging.info("Detenido por usuario (KeyboardInterrupt).")
-    #except Exception as e:
-        #logging.error("Error en run_collector: " + str(e))
-    #finally:
-        #df = pd.DataFrame(all_rows)
-        #df.to_csv(out_csv, index=False)
-        #df.to_excel(out_excel, index=False)
-        #logging.info(f"Finalizando. Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")# ---------- PRINCIPAL ----------
+    logging.info("Ejecutando snapshot...")
+
+    try:
+        snapshot = collect_snapshot(owm_key)
+        if snapshot:
+            all_rows.extend(snapshot)
+        else:
+            logging.warning("Snapshot vacío en esta ejecución.")
+    except Exception as e:
+        logging.error("Error en run_collector: " + str(e))
+
+    # Siempre guardar, aunque snapshot esté vacío o haya error
+    df = pd.DataFrame(all_rows)
+    df.to_csv(out_csv, index=False)
+    df.to_excel(out_excel, index=False)
+    logging.info(f"Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")
+    
+# ---------- PRINCIPAL ----------
+def collect_snapshot(owm_key=None):
+    """
+    Intenta obtener estaciones con: CityBikes API -> GBFS en sitio -> Selenium fallback.
+    Extrae clima de Clima.com (Miraflores) y lo asigna a estaciones dentro de Miraflores.
+    """
+    stations = try_citybikes_api()
+    if stations:
+        logging.info("Usando datos de api.citybik.es")
+    else:
+        stations = try_gbfs_direct(["https://www.citybikelima.com", "https://citybikelima.com", "https://www.citybikelima.com/es"])
+        if stations:
+            logging.info("Usando GBFS directo desde sitio")
+        else:
+            stations = selenium_scrape_citybike(CITYBIKE_URL)
+            if stations:
+                logging.info("Usando extracción via Selenium (fallback)")
+    if not stations:
+        logging.error("No se pudo obtener lista de estaciones por ninguna vía.")
+        return []
+
+    ts = now_ts()
+    # extraer clima para Miraflores (una única llamada por snapshot)
+    clima_miraf = scrape_clima_miraflores()  # {'temp_C': float, 'clima': str} o None
+    if clima_miraf:
+        logging.info(f"Clima.com Miraflores: temp={clima_miraf.get('temp_C')}°C, desc='{clima_miraf.get('clima')}'")
+    else:
+        logging.info("No se obtuvo clima desde Clima.com (fallback a OWM por estación si se proporcionó o None)")
+
+    rows = []
+    for s in stations:
+        lat = s.get('lat')
+        lon = s.get('lon')
+        capacity = s.get('capacity')
+        free_bikes = s.get('free_bikes') if 'free_bikes' in s else None
+        empty_slots = s.get('empty_slots') if 'empty_slots' in s else None
+
+        # fallback: obtener clima por coordenadas (OpenWeatherMap) si no hay clima_miraf o estación fuera de Miraflores
+        weather = None
+        if (not clima_miraf) and lat and lon and owm_key:
+            weather = get_weather_for_coord(lat, lon, owm_key)
+
+        # determinar si la estación está en Miraflores (usa Haversine)
+        in_miraflores = False
+        try:
+            if lat is not None and lon is not None:
+                dkm = haversine_km(float(lat), float(lon), MIRAFLORES_CENTER[0], MIRAFLORES_CENTER[1])
+                in_miraflores = (dkm <= MIRAFLORES_RADIUS_KM)
+        except Exception:
+            in_miraflores = False
+
+        # asignación de temperatura y descripción:
+        if in_miraflores and clima_miraf:
+            temp_assigned = clima_miraf.get('temp_C')
+            clima_assigned = clima_miraf.get('clima')
+        else:
+            # fuera de Miraflores o no se obtuvo clima_miraf: usar OWM si existe o None
+            temp_assigned = weather.get('temp_C') if weather else (clima_miraf.get('temp_C') if clima_miraf else None)
+            clima_assigned = weather.get('weather_desc') if weather else (clima_miraf.get('clima') if clima_miraf else None)
+
+        row = {
+            'scrape_timestamp': ts.isoformat(),
+            'station_id': s.get('id'),
+            'station_name': s.get('name'),
+            'lat': lat,
+            'lon': lon,
+            'capacity': capacity,
+            'free_bikes': free_bikes,
+            'empty_slots': empty_slots,
+            'day_of_week': ts.strftime("%A"),
+            'periodo_dia': periodo_del_dia(ts),
+            # Si hay OWM quedará en weather_main/desc; temp_C prioriza clima.com para Miraflores
+            'weather_main': (weather.get('weather_main') if weather else None),
+            'weather_desc': (weather.get('weather_desc') if weather else None),
+            'temp_C': temp_assigned,
+            'wind_speed': (weather.get('wind_speed') if weather else None),
+            # Clima específico extraído de Clima.com (si disponible) para Miraflores
+            'clima_miraflores': (clima_miraf.get('clima') if clima_miraf else None),
+            'temp_miraflores': (clima_miraf.get('temp_C') if clima_miraf else None),
+            'in_miraflores': in_miraflores,
+            # Placeholder: inferir 'zona' (oficinas/universidad/turistica) y 'densidad_poblacional' con datos externos
+            'zona_inferida': None,
+            'densidad_poblacional': None
+        }
+        rows.append(row)
+    return rows
+
+# ---------- PRINCIPAL ----------
 def collect_snapshot(owm_key=None):
     """
     Intenta obtener estaciones con: CityBikes API -> GBFS en sitio -> Selenium fallback.
@@ -516,17 +602,36 @@ def collect_snapshot(owm_key=None):
     return rows
 
 def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
+    start = time.time()
+    end_time = start + TOTAL_RUN_SECONDS
     all_rows = []
-    logging.info(f"Ejecutando snapshot")
-    snapshot = collect_snapshot(owm_key)
-    if snapshot:
-        all_rows.extend(snapshot)
+    logging.info(f"Iniciando recolección: intervalo {INTERVAL_SECONDS}s durante {DAYS} días.")
+    try:
+        while time.time() < end_time:
+            t0 = time.time()
+            logging.info("Ejecutando snapshot...")
+            snapshot = collect_snapshot(owm_key)
+            if snapshot:
+                all_rows.extend(snapshot)
+                df = pd.DataFrame(all_rows)
+                df.to_csv(out_csv, index=False)
+                df.to_excel(out_excel, index=False)
+                logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
+            else:
+                logging.warning("Snapshot vacío en esta ejecución.")
+            t_elapsed = time.time() - t0
+            sleep_for = max(0, INTERVAL_SECONDS - t_elapsed)
+            logging.info(f"Durmiendo {sleep_for:.1f}s hasta la próxima ejecución.")
+            time.sleep(sleep_for)
+    except KeyboardInterrupt:
+        logging.info("Detenido por usuario (KeyboardInterrupt).")
+    except Exception as e:
+        logging.error("Error en run_collector: " + str(e))
+    finally:
         df = pd.DataFrame(all_rows)
         df.to_csv(out_csv, index=False)
         df.to_excel(out_excel, index=False)
-        logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
-    else:
-        logging.warning("Snapshot vacío en esta ejecución.")
+        logging.info(f"Finalizando. Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")
 
 
 
