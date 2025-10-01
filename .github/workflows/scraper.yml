@@ -3,7 +3,7 @@ name: CityBike Lima Scraper
 on:
   schedule:
     - cron: "*/30 * * * *"   # cada 30 minutos
-  workflow_dispatch:
+  workflow_dispatch:          # para correr manualmente también
 
 jobs:
   scrape:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0   # necesario para poder hacer push luego
+          fetch-depth: 0   # necesario para push
 
       - name: Configurar Python
         uses: actions/setup-python@v4
@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests beautifulsoup4 lxml openpyxl selenium webdriver-manager
 
-      - name: Ejecutar snapshot
+      - name: Ejecutar scraper
         env:
           OWM_KEY: ${{ secrets.OWM_KEY }}
         run: python collector.py
@@ -35,6 +35,5 @@ jobs:
           git config --local user.name "GitHub Actions"
           git pull --rebase
           git add data/citybike_lima.csv data/citybike_lima.xlsx
-          git commit -m "Snapshot actualizado $(date)" || echo "Sin cambios para commitear"
+          git commit -m "Snapshot actualizado $(date)" || echo "Sin cambios"
           git push
-
