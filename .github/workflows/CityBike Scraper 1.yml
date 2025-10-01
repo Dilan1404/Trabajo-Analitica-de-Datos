@@ -1,4 +1,4 @@
-name: CityBike Scraper
+name: CityBike Scraper 1
 
 on:
   schedule:
