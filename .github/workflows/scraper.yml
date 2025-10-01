@@ -31,7 +31,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add data/citybike_lima.csv data/citybike_lima.xlsx
-          git commit -m "Snapshot actualizado $(date)"
-          git push
+          git add data/citybike_lima.csv data/citybike_lima.xlsx || true
+          git commit -m "Snapshot actualizado $(date)" || echo "No hay cambios que commitear"
+          git push origin HEAD:main
         continue-on-error: true
