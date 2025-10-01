@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # 👈 habilita permisos de escritura al bot
+  contents: write  
 
 jobs:
   scrape:
