@@ -528,16 +528,6 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
     else:
         logging.warning("Snapshot vacío en esta ejecución.")
 
-    #except KeyboardInterrupt:
-        #logging.info("Detenido por usuario (KeyboardInterrupt).")
-    #except Exception as e:
-        #logging.error("Error en run_collector: " + str(e))
-    #finally:
-        #df = pd.DataFrame(all_rows)
-        #df.to_csv(out_csv, index=False)
-        #df.to_excel(out_excel, index=False)
-        #logging.info(f"Finalizando. Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")
-
 
 
 
