@@ -1,0 +1,37 @@
+name: GeneraDataSet
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+   build:
+     runs-on: ubuntu-latest
+
+
+     permissions:
+       contents: write
+
+     steps:
+        - name: Checkout mi DataSet
+          uses: actions/checkout@v5
+
+        - name: Setup Python
+          uses: actions/setup-python@v6
+          with:
+            python-version: '3.10' 
+            
+        - name: Corre mi codigo
+          run: python ./TeQuieroCityBike.py
+            
+        - name: Commit and Push changes
+          uses: stefanzweifel/git-auto-commit-action@v6
+          with:
+            commit_message: Carga de datos
+            commit_user_name: Dilan [ Github Actions ]
+       
+    
+
+       
+      
+      
