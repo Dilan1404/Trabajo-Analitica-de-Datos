@@ -32,9 +32,9 @@ from bs4 import BeautifulSoup
 
 # Selenium fallback
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import WebDriverException
-
 # ---------- CONFIG ----------
 CITYBIKE_URL = "https://www.citybikelima.com/es#the-map"
 # Google My Maps KML (usa el MID que diste)
@@ -190,8 +190,8 @@ def selenium_scrape_citybike(url=CITYBIKE_URL, headless=True):
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
     try:
-        driver = webdriver.Chrome(options=chrome_options)
-    except WebDriverException as e:
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+    except Exception as e:
         logging.error("No se pudo iniciar Chrome/Chromedriver: " + str(e))
         return None
     try:
