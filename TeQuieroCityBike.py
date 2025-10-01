@@ -562,7 +562,7 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
 
 
 # ---------- Configuración manual para Colab ----------
-# OWM_KEY = None   # Si tienes clave de OpenWeatherMap, ponla aquí
+OWM_KEY = None   # Si tienes clave de OpenWeatherMap, ponla aquí
 # INTERVAL_MINUTES = 30
 # DAYS = 5
 
