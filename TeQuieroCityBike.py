@@ -519,14 +519,14 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
     all_rows = []
     logging.info(f"Ejecutando snapshot")
     snapshot = collect_snapshot(owm_key)
-            if snapshot:
-                all_rows.extend(snapshot)
-                df = pd.DataFrame(all_rows)
-                df.to_csv(out_csv, index=False)
-                df.to_excel(out_excel, index=False)
-                logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
-            else:
-                logging.warning("Snapshot vacío en esta ejecución.")
+    if snapshot:
+        all_rows.extend(snapshot)
+        df = pd.DataFrame(all_rows)
+        df.to_csv(out_csv, index=False)
+        df.to_excel(out_excel, index=False)
+        logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
+    else:
+        logging.warning("Snapshot vacío en esta ejecución.")
 
     except KeyboardInterrupt:
         logging.info("Detenido por usuario (KeyboardInterrupt).")
