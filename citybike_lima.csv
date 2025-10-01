@@ -50,3 +50,54 @@ scrape_timestamp,station_id,station_name,lat,lon,capacity,free_bikes,empty_slots
 2025-10-01T04:55:26.530477-05:00,eb0b102f9e9bb933d2194064e70496ad,18032 Ca. Gral. Suarez - Av .Angamos Oeste,-12.113475,-77.027247,18,7,10,Wednesday,noche,,,16.0,,Desconocido
 2025-10-01T04:55:26.530477-05:00,edd8ff1ca69c234b86958ec42e3dd651,18046 Malecón de la Marina - Skate Park,-12.117261,-77.045922,16,7,9,Wednesday,noche,,,16.0,,Desconocido
 2025-10-01T04:55:26.530477-05:00,eff5bc44fad7421819820f56aa6ded68,18012 Ca. Ignacio La Puente - Av. Benavides,-12.126223,-77.017232,20,3,17,Wednesday,noche,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,008a35afc6b4060be57b48bf90bec44c,18027 Ov. Julio Ramón Riveyro - Av. Pardo,-12.1190126,-77.039928,14,9,5,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,03367da30caea302b11c838d8b98df55,18009 Ca. Luis Schereiber Cdra. 2 (C.C. Aurora),-12.122125,-77.011506,16,10,6,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,06dd87a8b87232577015b1c9a4ba08ed,18024 Ov. Bolognesi - Ca. Madrid,-12.123368,-77.035637,14,4,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,0927eccbf04e2aadd179595c55c52bbe,18047 Malecón Cisneros - Ca. Trípoli,-12.1250365,-77.0373073,16,7,9,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,0ac132eb1a147b7b23a753185cbebd1d,18026 Malecón de la Marina - Parque Grau,-12.118497,-77.045048,20,10,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,11c5d99df877943158c7e7c693242e26,18022 Malecón de la Reserva - Malecón 28 de Julio,-12.1283328,-77.0353586,20,15,5,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,1ff7b00c8a2af2eeb129df70939eb20b,18034 Ca. Tacna - Av. A. Aramburú,-12.103375,-77.029535,16,8,8,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,263e9a1c4f245c4070f8c85b88d0f10d,18021 Av. Armendariz -Av. Larco (Larcomar),-12.13176,-77.02971,28,14,14,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,3ab2451c995f47035d2b14590753236a,18018 Av. Nuñez de Balboa - Av. Reducto,-12.1295502,-77.0241593,20,12,7,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,3c8e489aaccbcbbe87f59457fe1901d1,18016 Ca. Manco Capac - Av. Larco,-12.1278816,-77.0294289,16,6,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,409c57fe8f27975938e2e0248a4d45bc,18002 Ca. Oscar R. Benavides - Ov. Miraflores (Parque Kennedy),-12.1197331,-77.0290916,20,1,19,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,4158a25459abe328f8ab8c32c0db7b6b,18043 Ca. Mariano Melgar - Ca. Gral. Mendiburu,-12.1107703,-77.0494,16,7,9,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,438d63a7c5cb69db70e9cd6665120d61,18001 Ca. Oscar R. Benavides - Ca. Schell (Parque Kennedy),-12.122464,-77.031208,20,3,17,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,439e3845a612d6b0a61506b0ebe52a91,18004 Av. Ernesto Diez Canseco - Av. Paseo de la República,-12.1220145,-77.0246459,12,5,7,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,55c0bf37006a2c06875866c6e9e13156,18039 Psje. Juana Alarco De Dammert - Ov. Gutierrez,-12.110583,-77.036259,18,5,13,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,57ded81c72e11e6fc644698ee200d750,18045 Malecón de la Marina - Av. Federico Villarreal,-12.113541,-77.049135,20,8,12,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,5b7914e3a19e2d392967c8ff9a1eeb5e,18010 Ca. Placencia - Av. Benavides,-12.127469,-77.011515,16,6,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,6369e20f974a82f599ac39793a9ceeef,27042 Av. P. Carriquiry - Av. Ricardo Angulo,-12.0914467,-77.0190921,16,0,16,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,6483875f7b7770a47a79c18bb17bc54e,18036 Ca. Carlos Tenaud - Av. Arequipa,-12.108822,-77.030403,16,6,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,66ba95532fd0758049c624f5a08d8e4d,18007 Ca. Schell - Av. La Paz,-12.1232664,-77.0268261,20,9,11,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,6769076dbc301448af071082f5822f8c,18040 Ca. Torre Tagle - Parque Piura,-12.116439,-77.037294,12,6,6,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,696787ac674aad03dc56a790f1f9e6ed,18033 Ca. Scipión Llona Cdra.3,-12.107284,-77.028261,16,3,13,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,6b34990c05dc96c8251a0a369cb69401,18037 Av. Angamos Oeste - Parque Naciones Unidas,-12.110498,-77.044991,28,8,20,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,6cc6c7fa220969e769d6ade973d20fc4,18003 Av.Ricardo Palma - Av. La Paz,-12.119361,-77.026758,24,9,15,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,73f1bdfa0b91640c04cf7d4d17ec9bd7,18017 Ca. Manco Capac - Av. La Paz,-12.1289245,-77.0269035,20,3,17,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,7445571ff483b34f2e41c478e6d83588,18020 Mlcn. De la Reserva - Av. N. de Balboa (Parque Domodossola),-12.133867,-77.028311,24,5,19,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,757937ea9bcfaefaef0a20a336c024cf,18028 Av. Jorge Chávez - Av. Jose Pardo,-12.11928,-77.03687,20,7,13,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,758f33f3320ac4a7aca286cf7e57bef4,18038 Ca. Gral. Borgoño - Ca. Ayacucho,-12.111647,-77.033347,20,4,16,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,8301c7ecad3d99b5e04f03b87ffb8af4,18023 Ca.BellavistaCdra.5,-12.12378,-77.033694,14,9,5,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,876923a9839232b31d01c19a6af87e6f,18019 Boulevard Armendariz - Av. La Paz,-12.135091,-77.024853,20,16,4,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,87d95a956d801c0953b6169325661979,18005 Av. Ricardo Palma - Av. Roca y Boloña ( Pq. Las Tradiciones),-12.12225,-77.020597,20,9,11,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,88a9e07a36d29cb5801f82cedd2534b4,18013 Ca. Tejada - Av. 28 de Julio,-12.1305704,-77.0195018,12,10,2,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,92f82729a1aa0e98e16bac393ddaf91b,18029 Ca. Gral. Recavarren - Av. José Pardo,-12.119232,-77.033696,18,12,6,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,9652d392478ec6d31cb23d0a2d22aa30,18044 Estadio Manuel Bonilla - Malecón de la Marina,-12.111361,-77.051797,24,16,8,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,9b481ef2d05f69c2b56ac04ac189cc8d,18049 Ca. Ignacio Merino - Av. La Mar,-12.113362,-77.0457856,14,9,5,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,a08754c736d95b13253dc6e7ab0a84bf,18031 Ca. Gonzales Prada - Av. Paseo de la República  (Parque Miranda),-12.116391,-77.026614,17,10,7,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,a1c5bf0bc5ddcdb928871fbb97e89ada,18041 Ca. Gral. Varela - Av. Angamos Oeste,-12.114198,-77.038894,12,7,5,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,aea4af9a353483a0761b042ca8758636,18030 Ca. Atahualpa Cdra.6 (Parque Bonilla),-12.1135528,-77.0310859,16,6,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,aeddcf808d428c290c0d523999b4a298,18006 Av. Rep. de Panamá - Av. Gran Mcal. Ramón Castilla,-12.1219288,-77.018143,20,11,9,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,b01138adb0102e1f6862bb8ba54b9721,18014 Ca. Ramon Ribeyro - Av. Benavides,-12.1258495,-77.0219643,24,4,20,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,b167c074941be5e72c84b015140b95ae,18008 Ca.Lola Pardo - Ca. Mayor Arce de Oliva,-12.1193071,-77.015962,18,5,12,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,bb40d8da8fed6afda3b2ff8f0c59e48d,18048 Av. Mariscal La Mar - Av. Santa Cruz,-12.1170034,-77.042041,14,5,9,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,c00d815ca6322144c5510d9f9e7121da,18011 Ca. GermánA.Goméz - Av.JoseR.Gastón,-12.126933,-77.0092536,16,12,4,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,c07eaacbff9bf0e1bc77ee5fd3b14bb9,18025 Malecón Cisneros - (Parque del Faro La Marina),-12.1231563,-77.0397424,20,3,17,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,c87a72c82867fcd9f59503de195895b3,18035 Ca. Santander - Av. Santa Cruz,-12.105838,-77.033209,12,1,11,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,dc710115aa6014501e5b457a0b14ef25,18015 Ca. Bolivar - Ca. Alcanfores,-12.1257284,-77.02794,24,11,13,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,e14ff39be43b5e75c56b2be2606d3a3e,18042 Ca. Retiro - Av. Angamos Oeste,-12.113642,-77.040507,16,6,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,e8c7678be73f7c2febaadc3366c822ac,18050 Ca. Gral. Borgoño - Parque Manuel Solari,-12.1153256,-77.0332091,12,10,2,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,eb0b102f9e9bb933d2194064e70496ad,18032 Ca. Gral. Suarez - Av .Angamos Oeste,-12.113475,-77.027247,18,7,10,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,edd8ff1ca69c234b86958ec42e3dd651,18046 Malecón de la Marina - Skate Park,-12.117261,-77.045922,16,7,9,Wednesday,mañana,,,16.0,,Desconocido
+2025-10-01T05:06:51.123559-05:00,eff5bc44fad7421819820f56aa6ded68,18012 Ca. Ignacio La Puente - Av. Benavides,-12.126223,-77.017232,20,3,17,Wednesday,mañana,,,16.0,,Desconocido
