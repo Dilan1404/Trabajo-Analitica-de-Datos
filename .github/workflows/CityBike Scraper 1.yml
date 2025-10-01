@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write   # necesario para push desde el bot
+  contents: write   # 👈 habilita permisos de escritura al bot
 
 jobs:
   scrape:
@@ -26,20 +26,8 @@ jobs:
       - name: Run scraper
         run: python TeQuieroCityBike.py
 
-      # 🔧 Aquí integramos primero los cambios remotos
-      - name: Pull with rebase
-        run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git pull --rebase origin main
-
-      # ✅ Luego comiteamos solo si hay cambios
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "Nuevo snapshot CityBike" || echo "No changes to commit"
-
-      # 🚀 Finalmente hacemos el push limpio
-      - name: Push changes
-        run: git push origin main
+      - name: Commit & Push data
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update dataset snapshot"
 
