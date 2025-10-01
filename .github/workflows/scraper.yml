@@ -3,7 +3,7 @@ name: CityBike Lima Scraper
 on:
   schedule:
     - cron: "*/30 * * * *"   # cada 30 minutos
-  workflow_dispatch:          # ejecución manual opcional
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # necesario para poder hacer push luego
 
       - name: Configurar Python
         uses: actions/setup-python@v4
@@ -31,7 +33,8 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add data/citybike_lima.csv data/citybike_lima.xlsx || true
-          git commit -m "Snapshot actualizado $(date)" || echo "No hay cambios que commitear"
-          git push origin HEAD:main
-        continue-on-error: true
+          git pull --rebase
+          git add data/citybike_lima.csv data/citybike_lima.xlsx
+          git commit -m "Snapshot actualizado $(date)" || echo "Sin cambios para commitear"
+          git push
+
