@@ -36,8 +36,7 @@ GMAPS_KML = "https://www.google.com/maps/d/kml?mid=12PUl4VbbO3IBWRSaXrCMHH0u_NI&
 
 # Muestreo
 INTERVAL_SECONDS = 30 * 60  # cada 30 minutos
-DAYS = 5
-TOTAL_RUN_SECONDS = DAYS * 24 * 3600
+
 
 # Output
 OUTPUT_EXCEL = "citybike_lima_5days.xlsx"
@@ -410,15 +409,9 @@ def collect_snapshot(owm_key=None):
     return rows
 
 def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
-    start = time.time()
-    end_time = start + TOTAL_RUN_SECONDS
     all_rows = []
-    logging.info(f"Iniciando recolección: intervalo {INTERVAL_SECONDS}s durante {DAYS} días.")
-    try:
-        while time.time() < end_time:
-            t0 = time.time()
-            logging.info("Ejecutando snapshot...")
-            snapshot = collect_snapshot(owm_key)
+    logging.info(f"Ejecutando")
+    snapshot = collect_snapshot(owm_key)
             if snapshot:
                 all_rows.extend(snapshot)
                 df = pd.DataFrame(all_rows)
@@ -427,10 +420,6 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
                 logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
             else:
                 logging.warning("Snapshot vacío en esta ejecución.")
-            t_elapsed = time.time() - t0
-            sleep_for = max(0, INTERVAL_SECONDS - t_elapsed)
-            logging.info(f"Durmiendo {sleep_for:.1f}s hasta la próxima ejecución.")
-            time.sleep(sleep_for)
     except KeyboardInterrupt:
         logging.info("Detenido por usuario (KeyboardInterrupt).")
     except Exception as e:
