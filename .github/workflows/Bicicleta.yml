@@ -2,48 +2,39 @@ name: GeneraDataSet
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-    
+    - cron: "*/30 * * * *"   # cada 30 minutos
+  workflow_dispatch:         # permite correrlo manualmente
+
 jobs:
-   build:
-     runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-     permissions:
-       contents: write
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-     steps:
-        - name: Checkout mi DataSet
-          uses: actions/checkout@v5
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
 
-        - name: Setup Python
-          uses: actions/setup-python@v6
-          with:
-            python-version: '3.10' 
+      - name: Instalar Chrome y Chromedriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium-chromedriver
+          which chromedriver
 
-        - name: Instalar dependencias
-          run: |
-            pip install selenium
-            pip install -r requirements.txt || true
-            
-        - name: Instalar Chrome y Chromedriver
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y chromium-browser chromium-chromedriver
-            which chromedriver
-          
-        - name: Corre mi codigo
-          run: python ./TeQuieroCityBike.py
-            
-        - name: Commit and Push changes
-          uses: stefanzweifel/git-auto-commit-action@v6
-          with:
-            commit_message: Carga de datos
-            commit_user_name: Dilan [ Github Actions ]
-       
+      - name: Ejecutar script
+        run: python TeQuieroCityBike.py
+
+      - name: Commit & Push resultados
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Update dataset snapshot"
+
     
 
        
