@@ -20,13 +20,7 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install pandas requests beautifulsoup4 lxml openpyxl selenium
-
-      - name: Instalar Chromium y Chromedriver
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser chromium-chromedriver
-          sudo cp /usr/lib/chromium-browser/chromedriver /usr/bin
+          pip install pandas requests beautifulsoup4 lxml openpyxl selenium webdriver-manager
 
       - name: Ejecutar snapshot
         env:
