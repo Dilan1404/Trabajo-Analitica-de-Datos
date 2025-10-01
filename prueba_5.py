@@ -7,10 +7,14 @@ Original file is located at
     https://colab.research.google.com/drive/1rMxl2OIsSI_leC1IQyJQQQDusvBdLqrm
 """
 
-!pip install selenium
-!apt-get update # to update apt-get
-!apt install chromium-chromedriver
-!cp /usr/lib/chromium-browser/chromedriver /usr/bin
+import requests
+import time
+import math
+import argparse
+import pandas as pd
+...
+
+
 import sys
 sys.path.insert(0,'/usr/lib/chromium-browser/chromedriver')
 
@@ -184,6 +188,7 @@ def try_gbfs_direct(base_url_candidates):
 
 def selenium_scrape_citybike(url=CITYBIKE_URL, headless=True):
     logging.info("Usando Selenium para renderizar y extraer estaciones del mapa (fallback)...")
+    
     chrome_options = Options()
     if headless:
         chrome_options.add_argument("--headless=new")
@@ -191,6 +196,7 @@ def selenium_scrape_citybike(url=CITYBIKE_URL, headless=True):
     chrome_options.add_argument("--disable-dev-shm-usage")
     try:
         driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+        
     except Exception as e:
         logging.error("No se pudo iniciar Chrome/Chromedriver: " + str(e))
         return None
