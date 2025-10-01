@@ -420,15 +420,15 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
                 logging.info(f"Guardado {len(all_rows)} registros (CSV y Excel).")
             else:
                 logging.warning("Snapshot vacío en esta ejecución.")
-    except KeyboardInterrupt:
-        logging.info("Detenido por usuario (KeyboardInterrupt).")
-    except Exception as e:
-        logging.error("Error en run_collector: " + str(e))
-    finally:
-        df = pd.DataFrame(all_rows)
-        df.to_csv(out_csv, index=False)
-        df.to_excel(out_excel, index=False)
-        logging.info(f"Finalizando. Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")# ---------- PRINCIPAL ----------
+    #except KeyboardInterrupt:
+        #logging.info("Detenido por usuario (KeyboardInterrupt).")
+    #except Exception as e:
+        #logging.error("Error en run_collector: " + str(e))
+    #finally:
+        #df = pd.DataFrame(all_rows)
+        #df.to_csv(out_csv, index=False)
+        #df.to_excel(out_excel, index=False)
+        #logging.info(f"Finalizando. Guardados {len(all_rows)} registros en {out_csv} y {out_excel}.")# ---------- PRINCIPAL ----------
 def collect_snapshot(owm_key=None):
     """
     Intenta obtener estaciones con: CityBikes API -> GBFS en sitio -> Selenium fallback.
@@ -542,14 +542,16 @@ def run_collector(owm_key=None, out_excel=OUTPUT_EXCEL, out_csv=OUTPUT_CSV):
 
 
 # ---------- Configuración manual para Colab ----------
-OWM_KEY = None   # Si tienes clave de OpenWeatherMap, ponla aquí
+if __name__ == "__main__":
+    OWM_KEY = None   # Si tienes clave de OpenWeatherMap, ponla aquí
+    run_collector(owm_key=OWM_KEY)
 # INTERVAL_MINUTES = 30
 # DAYS = 5
 
 # INTERVAL_SECONDS = INTERVAL_MINUTES * 60
 # TOTAL_RUN_SECONDS = DAYS * 24 * 3600
 
-run_collector(owm_key=OWM_KEY)
+    
 
 
 
